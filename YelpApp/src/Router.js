@@ -17,17 +17,14 @@ function Router() {
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{
-                    gestureEnabled: true
+                    gestureEnabled: true,
+                    // headerShown: false
                 }}
             >
                 <Stack.Screen
+                    options = {{title:'CITIES'}}
                     name="CityPage"
                     component={CityPage}
-                />
-
-                <Stack.Screen
-                    name = 'Restaurants'
-                    component={Restaurants}
                 />
 
                 <Stack.Screen
@@ -35,7 +32,10 @@ function Router() {
                     component={RestaurantPage}
                 />
 
-                
+                <Stack.Screen
+                    name = 'Restaurants'
+                    component={Restaurants}
+                />
                 
             </Stack.Navigator>
         </NavigationContainer>

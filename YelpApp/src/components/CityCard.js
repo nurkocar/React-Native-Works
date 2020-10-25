@@ -1,19 +1,26 @@
-import { useLinkProps } from '@react-navigation/native';
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 // import { useNavigation } from '@react-navigation/native';
 
 const CityCard = ({city, onClicked}) => {
-
-    return (
-    
-            <TouchableOpacity
-                onPress = {() => onClicked() }
-            >
-                <Text>{city.name}</Text>
-            </TouchableOpacity>
-    )
-}
+  return (
+    <TouchableOpacity style={styles.cityButton} onPress={() => onClicked()}>
+      <Text style={styles.cityText}>{city.name}</Text>
+    </TouchableOpacity>
+  );
+};
 
 export default CityCard;
+
+const styles = StyleSheet.create({
+  cityButton: {
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1,
+  },
+  cityText: {
+    textAlign: 'center',
+    fontSize: 20,
+    paddingVertical: 5,
+  },
+});
