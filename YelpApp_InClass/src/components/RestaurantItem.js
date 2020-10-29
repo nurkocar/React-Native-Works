@@ -1,52 +1,58 @@
 import React from 'react';
-import { TouchableOpacity, View, Text, Image, StyleSheet, Dimensions } from 'react-native';
-
-// {
-//     "id": 107257,
-//     "name": "Las Tablas Colombian Steak House",
-//     "address": "2942 N Lincoln Ave",
-//     "city": "Chicago",
-//     "state": "IL",
-//     "area": "Chicago / Illinois",
-//     "postal_code": "60657",
-//     "country": "US",
-//     "phone": "7738712414",
-//     "lat": 41.935137,
-//     "lng": -87.662815,
-//     "price": 2,
-//     "reserve_url": "http://www.opentable.com/single.aspx?rid=107257",
-//     "mobile_reserve_url": "http://mobile.opentable.com/opentable/?restId=107257",
-//     "image_url": "https://www.opentable.com/img/restimages/107257.jpg"
-//   }
+import {
+  TouchableOpacity,
+  Image,
+  Dimensions,
+  View,
+  Text,
+  StyleSheet,
+} from 'react-native';
 
 const RestaurantItem = (props) => {
-    return (
-        <TouchableOpacity style = {styles.container} onPress = {props.onSelect}>
-            <Image
-                style={styles.image}
-                source={{ uri:props.restaurant.image_url}}
-            />
+  const priceItem = '💲';
 
-            <Text style ={styles.name}>{props.restaurant.name}</Text>
+  return (
+    <TouchableOpacity style={styles.container} onPress={props.onSelect}>
+      <Image style={styles.image} source={{uri: props.restaurant.image_url}} />
+      <View
+        style={{
+          flex: 1,
+          // flexWrap: "wrap",
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignContent: 'center',
+        }}>
+        <Text style={styles.name}>{props.restaurant.name}</Text>
+        <Text style={styles.price}>{priceItem.repeat(props.restaurant.price)}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
-        </TouchableOpacity>
-    )
-}
-
-export { RestaurantItem };
+export {RestaurantItem};
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#bdbdbd',
-        padding: 10,
-        margin: 5,
-        borderRadius: 5
-    },
-    image: {
-        height: Dimensions.get('window').height / 3
-    },
-    name: {
-        fontSize: 20,
-        fontWeight: 'bold'
-    }
-})
+  container: {
+    flex: 1,
+    backgroundColor: '#81d4fa',
+    padding: 10,
+    margin: 10,
+    borderRadius: 10,
+  },
+
+  image: {
+    height: Dimensions.get('window').height / 3,
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingRight: 70,
+    marginVertical: 5,
+  },
+  price: {
+    position: 'absolute',
+    right: 0,
+    fontSize: 20,
+    marginVertical: 5,
+  },
+});

@@ -1,34 +1,45 @@
 import React from 'react';
-import { NavigationContainer} from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
+
+import {CityList, RestaurantDetail, About, RestaurantList} from './pages';
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-import { CityList, RestaurantDetail, RestaurantList } from './pages'
+const Home = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Cities"
+        component={CityList}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Restaurants"
+        component={RestaurantList}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Details"
+        component={RestaurantDetail}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const Router = () => {
-    return(
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen 
-                    name = 'Cities' 
-                    component = {CityList}
-                    options = {{headerShown: false}}
-                />
-
-                <Stack.Screen
-                    name = 'Restaurants'
-                    component = {RestaurantList}
-                />
-
-                <Stack.Screen 
-                    name = 'Details'
-                    component = {RestaurantDetail}
-                
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
-    )
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="About" component={About} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
 };
 
 export default Router;
+
